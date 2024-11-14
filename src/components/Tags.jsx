@@ -1,6 +1,6 @@
-export function Tags ({ tag }) {
+export function Tags({ tag }) {
   return (
-    <span className='p-2 rounded-md bg-gray-200 text-gray-700'>
+    <span className="rounded-full bg-emerald-400/10 bg-opacity-95 text-emerald-300 px-3 py-1 text-xs font-medium leading-5">
       {tag}
     </span>
   )

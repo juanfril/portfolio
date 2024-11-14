@@ -1,0 +1,9 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "standard"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "space-before-function-paren": "off",
+    "no-unused-vars": "off"
+  }
+}
