@@ -1,37 +1,60 @@
+import { useEffect, useState } from 'react'
+import { Link } from './Link'
+
 export function Header() {
+  const [activeSection, setActiveSection] = useState('about')
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]')
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    sections.forEach(section => {
+      observer.observe(section)
+    })
+
+    return () => {
+      sections.forEach(section => {
+        observer.unobserve(section)
+      })
+    }
+  }, [])
+
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
-      <section className="flex flex-col justify-start m-7">
-        <h1 className="text-4xl sm:text-6xl font-bold mb-4">Juan Fco. Losa</h1>
-        <p className="text-lg sm:text-xl">
+    <header className="relative md:sticky md:top-0 flex flex-col md:flex-row lg:max-h-screen lg:w-full md:justify-between md:items-center md:py-4 backdrop-blur-md px-7 z-50">
+      <section className="flex flex-col sm:mb-6">
+        <h1 className="text-3xl sm:text-6xl md:text-4xl lg:text-6xl font-bold mb-4">
+          Juan Fco. Losa
+        </h1>
+        <p className="lg:text-lg md:text-sm sm:text-sm">
           Full Stack Developer focused on building amazing digital products.
         </p>
       </section>
-      <nav className="nav hidden lg:block" aria-label="In-page jump links">
-        <ul className="w-max">
+
+      <nav className="hidden sm:block" aria-label="In-page jump links">
+        <ul className="flex justify-center md:justify-end space-x-6">
           <li>
-            <a className="group flex items-center py-3 active" href="#about">
-              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none" />
-              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-                About
-              </span>
-            </a>
+            <Link href="about" activeSection={activeSection}>
+              About
+            </Link>
           </li>
           <li>
-            <a className="group flex items-center py-3" href="#experience">
-              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none" />
-              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-                Experience
-              </span>
-            </a>
+            <Link href="experience" activeSection={activeSection}>
+              Experience
+            </Link>
           </li>
           <li>
-            <a className="group flex items-center py-3" href="#projects">
-              <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none" />
-              <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-                Projects
-              </span>
-            </a>
+            <Link href="projects" activeSection={activeSection}>
+              Projects
+            </Link>
           </li>
         </ul>
       </nav>

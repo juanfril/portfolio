@@ -1,7 +1,6 @@
 import { Tags } from './Tags'
 
 export function ItemCard({ title, description, date, tags, link }) {
-  console.log(`tags experience: ${JSON.stringify(tags)}`)
   return (
     <a
       href={link}
@@ -12,7 +11,7 @@ export function ItemCard({ title, description, date, tags, link }) {
       <p className="text-gray-400 mb-4">{date}</p>
       <h2 className="text-2xl font-bold mb-4">{title}</h2>
       <p className="mb-4">{description}</p>
-      <section className="flex flex-row space-x-4 justify-center items-center p-3">
+      <section className="flex flex-wrap gap-2 justify-center items-center p-3">
         {tags.map((tag, index) => {
           return <Tags key={index} tag={tag} />
         })}
