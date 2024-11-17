@@ -4,7 +4,7 @@ export function Link({ children, href, activeSection }) {
       className={`group flex flex-col items-center ${activeSection === href ? 'text-slate-200' : ''}`}
       href={`#${href}`}
     >
-      <span className=" text-xs font-bold uppercase tracking-widest group-hover:text-slate-200 transition-colors duration-200 group-focus-visible:text-slate-200">
+      <span className="text-xs sm:text-[10px] font-bold uppercase tracking-widest group-hover:text-slate-200 transition-colors duration-200 group-focus-visible:text-slate-200">
         {children}
       </span>
       <span
