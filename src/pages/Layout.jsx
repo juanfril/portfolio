@@ -28,7 +28,7 @@ export function Layout() {
               )
             })}
             <a
-              href="/Resume-Juan-Fco-Losa.pdf"
+              href={`${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 text-center text-xl sm:text-2xl font-bold text-emerald-600 hover:text-emerald-300 transition-colors duration-200"
