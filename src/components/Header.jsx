@@ -31,7 +31,7 @@ export function Header() {
   return (
     <header className="relative md:sticky md:top-0 flex flex-col md:flex-row lg:max-h-screen lg:w-full md:justify-between md:items-center md:py-4 backdrop-blur-md px-7 z-50">
       <section className="flex flex-col sm:mb-6">
-        <h1 className="text-3xl sm:text-6xl md:text-4xl lg:text-6xl font-bold mb-4">
+        <h1 className="text-3xl sm:text-6xl md:text-4xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-emerald-200 bg-clip-text text-transparent">
           Juan Fco. Losa
         </h1>
         <p className="lg:text-lg md:text-sm sm:text-sm">
@@ -41,6 +41,22 @@ export function Header() {
 
       <div className="flex flex-col md:items-end space-y-4 mt-4 md:mt-0">
         <div className="flex space-x-4">
+          <a
+            href={`${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-slate-200 text-slate-400 transition-colors duration-200"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              height="1em"
+              width="1em"
+              className="w-8 h-8 md:w-8"
+            >
+              <path d="M14 2l6 6v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2h8m4 18V9h-5V4H6v16h12m-6-1l-4-4h2.5v-3h3v3H16l-4 4z" />
+            </svg>
+          </a>
           <a
             href="https://github.com/juanfril"
             target="_blank"
