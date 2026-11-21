@@ -1,7 +1,7 @@
 import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, ResumeIcon } from './Icons'
 
 export function Hero({ copy }) {
-  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf`
+  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf?v=2025`
 
   return (
     <section

@@ -1,7 +1,7 @@
 import { BrandMark, GitHubIcon, LinkedInIcon, ResumeIcon } from './Icons'
 
 export function Footer({ copy }) {
-  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf`
+  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf?v=2025`
 
   return (
     <footer className="border-t border-white/[0.07] py-10 mt-8">

@@ -3,7 +3,7 @@ import { BrandMark } from './Icons'
 
 export function Navbar({ lang, setLang, activeSection, copy }) {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf`
+  const resumeHref = `${import.meta.env.BASE_URL}Resume-Juan-Fco-Losa.pdf?v=2025`
 
   const navItems = [
     { id: 'overview', label: copy.nav.overview },
