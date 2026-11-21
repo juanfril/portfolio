@@ -2,10 +2,238 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-canvas: #06070a;
+  --bg-elevated: #0b0d13;
+  --bg-card-top: rgba(24, 28, 38, 0.72);
+  --bg-card-bottom: rgba(10, 12, 17, 0.94);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --text-primary: #f4f6fa;
+  --text-secondary: #98a2b3;
+  --text-muted: #667085;
+  --accent-amber: #ff944d;
+  --accent-amber-soft: rgba(255, 148, 77, 0.22);
+  --accent-cobalt: #4c8dff;
+  --accent-cobalt-soft: rgba(76, 141, 255, 0.22);
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-canvas);
+  color-scheme: dark;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+/* Subtle selection */
+::selection {
+  background: rgba(255, 148, 77, 0.28);
+  color: #ffffff;
+}
+
+/* Custom sleek dark scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Obsidian Glass Bento Card */
+.bento-card {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--bg-card-top) 0%, var(--bg-card-bottom) 100%);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 50px -24px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  transition:
+    border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms ease;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.065),
+    transparent 65%
+  );
+  z-index: 1;
+}
+
+.bento-card:hover {
+  border-color: var(--border-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 28px 60px -22px rgba(0, 0, 0, 0.95);
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card-interactive:hover {
+  transform: translateY(-2px);
+}
+
+/* Subtle film/noise surface texture for depth (no grid lines) */
+.obsidian-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Metallic dark glass tile inside bento visuals */
+.glass-tile {
+  background: linear-gradient(155deg, rgba(32, 37, 49, 0.9) 0%, rgba(12, 14, 20, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 18px 38px -12px rgba(0, 0, 0, 0.85);
+}
+
+/* Floating glass toast card */
+.glass-toast {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 148, 77, 0.14) 0%,
+    rgba(26, 30, 42, 0.85) 48%,
+    rgba(76, 141, 255, 0.14) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 20px 44px -10px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+/* Navbar floating blur */
+.glass-nav {
+  background: rgba(8, 10, 14, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* SVG animations inspired by GlassFlow luminous motion */
+@keyframes flowDash {
+  0% {
+    stroke-dashoffset: 320;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flowDashSlow {
+  0% {
+    stroke-dashoffset: 480;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulseRing {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-flow-dash {
+  stroke-dasharray: 90 230;
+  animation: flowDash 4.2s linear infinite;
+}
+
+.animate-flow-dash-slow {
+  stroke-dasharray: 120 360;
+  animation: flowDashSlow 6.5s linear infinite;
+}
+
+.animate-soft-float {
+  animation: softFloat 5.5s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulseRing 3.6s ease-in-out infinite;
+}
+
+.animate-fade-slide {
+  animation: fadeSlideIn 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-flow-dash,
+  .animate-flow-dash-slow,
+  .animate-soft-float,
+  .animate-pulse-ring,
+  .animate-fade-slide {
+    animation: none;
+  }
 }
